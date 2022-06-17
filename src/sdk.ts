@@ -1,16 +1,16 @@
-import { Seaport } from "@opensea/seaport-js";
-import { CROSS_CHAIN_SEAPORT_ADDRESS } from "@opensea/seaport-js/lib/constants";
-import {
-  ConsiderationInputItem,
-  CreateInputItem,
-  OrderComponents,
-} from "@opensea/seaport-js/lib/types";
 import { BigNumber } from "bignumber.js";
 import { Web3JsProvider } from "ethereum-types";
 import { isValidAddress } from "ethereumjs-util";
 import { providers } from "ethers";
 import { EventEmitter, EventSubscription } from "fbemitter";
 import * as _ from "lodash";
+import { Seaport } from "oc-seaport-js";
+import { CROSS_CHAIN_SEAPORT_ADDRESS } from "oc-seaport-js/lib/constants";
+import {
+  ConsiderationInputItem,
+  CreateInputItem,
+  OrderComponents,
+} from "oc-seaport-js/lib/types";
 import Web3 from "web3";
 import { WyvernProtocol } from "wyvern-js";
 import * as WyvernSchemas from "wyvern-schemas";
@@ -1504,10 +1504,12 @@ export class OpenSeaSDK {
     order,
     accountAddress,
     recipientAddress,
+    payableOverridesOptions,
   }: {
     order: OrderV2;
     accountAddress: string;
     recipientAddress?: string;
+    payableOverridesOptions?: any;
   }): Promise<string> {
     const isPrivateListing = !!order.taker;
     if (isPrivateListing) {
@@ -1529,6 +1531,7 @@ export class OpenSeaSDK {
           order: order.protocolData,
           accountAddress,
           recipientAddress,
+          payableOverridesOptions,
         });
         const transaction = await executeAllActions();
         transactionHash = transaction.hash;

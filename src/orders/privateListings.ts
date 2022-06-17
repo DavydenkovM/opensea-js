@@ -1,13 +1,13 @@
+import { BigNumber } from "ethers";
 import {
   ConsiderationInputItem,
   CreateInputItem,
   MatchOrdersFulfillment,
   Order,
   OrderWithCounter,
-} from "@opensea/seaport-js/lib/types";
-import { isCurrencyItem } from "@opensea/seaport-js/lib/utils/item";
-import { generateRandomSalt } from "@opensea/seaport-js/lib/utils/order";
-import { BigNumber } from "ethers";
+} from "oc-seaport-js/lib/types";
+import { isCurrencyItem } from "oc-seaport-js/lib/utils/item";
+import { generateRandomSalt } from "oc-seaport-js/lib/utils/order";
 
 export const getPrivateListingConsiderations = (
   offer: CreateInputItem[],
